@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package layer;
+
+service LayerService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (LayerById) returns (FindOneResData) {}
+  rpc Create (CreateLayerDto) returns (CreateResData) {}
+  rpc Update (UpdateLayerDto) returns (UpdateResData){}
+  rpc Delete (LayerById) returns (FindOneResData){}
+}
+
+message LayerById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Layer data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Layer data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Layer data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Layer data = 3;
+  Error error = 4;
+}
+
+message CreateLayerDto {
+  string name = 1;
+  int32 floor = 2;
+  int32 parkId = 3;
+}
+
+message UpdateLayerDto {
+  int32 id = 1;
+  string name = 2;
+  int32 floor = 3;
+  int32 parkId = 4;
+}
+
+message Layer {
+  int32 id = 1;
+  string name = 2;
+  int32 floor = 3;
+  int32 parkId = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Layers {
+  repeated Layer layers = 1;
+}
+

@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package user;
+
+service UserService {
+  rpc FindAll (Empity) returns (ResDataFindAll) {}
+  rpc FindOne (UserById) returns (ResDataFindOne) {}
+  rpc FindOnePhone (UserByPhone) returns (ResDataFindOne) {}
+  rpc Create (CreateUserDto) returns (ResDataCreate) {}
+  rpc Login (UserLoginDto) returns (ResDataCreate) {}
+  rpc Update (UpdateUserDto) returns (ResDataUpdate) {}
+  rpc Delete (UserById) returns (ResDataFindOne) {}
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message UserById {
+  int32 id = 1;
+}
+
+message UserByPhone {
+  string phone = 1;
+}
+
+message CreateUserDto {
+  string phone = 1;
+  string password = 2;
+  string role = 3;
+  int32 parkId = 4;
+}
+
+message UserLoginDto {
+  string phone = 1;
+  string password = 2;
+}
+
+message UpdateUserDto {
+  int32 id = 1;
+  string phone = 2;
+  string password = 3;
+  string role = 4;
+  optional int32 parkId = 5;
+}
+
+message ResDataFindAll {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated User data = 3;
+  string error = 4;
+}
+
+message ResDataFindOne {
+  string message = 1;
+  int32 statusCode = 2;
+  User data = 3;
+  string error = 4;
+}
+
+message ResDataCreate {
+  string message = 1;
+  int32 statusCode = 2;
+  User data = 3;
+  string error = 4;
+}
+
+message ResDataUpdate {
+  string message = 1;
+  int32 statusCode = 2;
+  User data = 3;
+  string error = 4;
+}
+
+message CreateData {
+  User data = 1;
+  string token = 2;
+}
+
+message User {
+  string phone = 1;
+  string password = 2;
+  string role = 3;
+  int32 parkId = 4;
+  int32 id = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}
+
+// id, phone, password, role, created_at, last_edited_at, park_id

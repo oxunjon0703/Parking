@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package file;
+
+service FileService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (FileById) returns (FindOneResData) {}
+  rpc Create (CreateFileDto) returns (CreateResData) {}
+  rpc Delete (FileById) returns (FindOneResData){}
+}
+
+message FileById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated File data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  File data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  File data = 3;
+  Error error = 4;
+}
+
+message CreateFileDto {
+  string url = 1;
+  string mimetype = 2;
+  int32 size = 3;
+}
+
+
+message File {
+  int32 id = 1;
+  string url = 2;
+  string mimetype = 3;
+  int32 size = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Files {
+  repeated File files = 1;
+}
+
+// id, url, mimetype, size, created_at, last_edited_at

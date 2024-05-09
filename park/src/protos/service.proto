@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package service;
+
+service ServiceService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (ServiceById) returns (FindOneResData) {}
+  rpc Create (CreateServiceDto) returns (CreateResData) {}
+  rpc Update (UpdateServiceDto) returns (UpdateResData){}
+  rpc Delete (ServiceById) returns (FindOneResData){}
+}
+
+message ServiceById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Service data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Service data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Service data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Service data = 3;
+  Error error = 4;
+}
+
+message CreateServiceDto {
+  int32 parkId = 1;
+  int32 userId = 2;
+  string startedAt = 3;
+  string endedAt = 4;
+  int32 price = 5;
+  int32 tariffId = 6;
+}
+
+message UpdateServiceDto {
+  int32 id = 1;
+  int32 parkId = 2;
+  int32 userId = 3;
+  string startedAt = 4;
+  string endedAt = 6;
+  int32 price = 7;
+  int32 tariffId = 8;
+}
+
+message Service {
+  int32 id = 1;
+  int32 parkId = 2;
+  int32 userId = 3;
+  string startedAt = 4;
+  string endedAt = 6;
+  int32 price = 7;
+  optional int32 tariffId = 8;
+  string createdAt = 9;
+  string lastEditedAt = 10;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Services {
+  repeated Service services = 1;
+}
+
+// id, park_id, user_id, started_at, ended_at, price, tariff_id, created_at, last_edited_at

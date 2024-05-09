@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package userTariff;
+
+service UserTariffService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (UserTariffById) returns (FindOneResData) {}
+  rpc Create (CreateUserTariffDto) returns (CreateResData) {}
+  rpc Update (UpdateUserTariffDto) returns (UpdateResData){}
+  rpc Delete (UserTariffById) returns (FindOneResData){}
+}
+
+message UserTariffById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated UserTariff data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserTariff data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserTariff data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserTariff data = 3;
+  Error error = 4;
+}
+
+message CreateUserTariffDto {
+  int32 userId = 1;
+  int32 tariffId = 2;
+  string startedAt = 3;
+  string endedAt = 4;
+}
+
+message UpdateUserTariffDto {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 tariffId = 3;
+  string startedAt = 4;
+  string endedAt = 5;
+}
+
+message UserTariff {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 tariffId = 3;
+  string startedAt = 4;
+  string endedAt = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message UserTariffs {
+  repeated UserTariff userTariffs = 1;
+}
+
+// id, user_id, tariff_id, started_at, ended_at, created_at, last_edited_at

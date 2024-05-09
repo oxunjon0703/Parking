@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package userDetail;
+
+service UserDetailService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (UserDetailById) returns (FindOneResData) {}
+  rpc Create (CreateUserDetailDto) returns (CreateResData) {}
+  rpc Update (UpdateUserDetailDto) returns (UpdateResData){}
+  rpc Delete (UserDetailById) returns (FindOneResData){}
+}
+
+message UserDetailById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated UserDetail data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserDetail data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserDetail data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  UserDetail data = 3;
+  Error error = 4;
+}
+
+message CreateUserDetailDto {
+  string firstname = 2;
+  string lastname = 3;
+  int32 avatar = 4;
+  int32 userId = 5;
+}
+
+message UpdateUserDetailDto {
+  int32 id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  int32 avatar = 4;
+  int32 userId = 5;
+}
+
+message UserDetail {
+  int32 id = 1;
+  string firstname = 2;
+  string lastname = 3;
+  int32 avatar = 4;
+  int32 userId = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message UserDetails {
+  repeated UserDetail userDetails = 1;
+}
+
+// id, firstname, lastname, avatar, user_id, created_at, last_edited_at
+
+

@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package tariff;
+
+service TariffService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (TariffById) returns (FindOneResData) {}
+  rpc Create (CreateTariffDto) returns (CreateResData) {}
+  rpc Update (UpdateTariffDto) returns (UpdateResData){}
+  rpc Delete (TariffById) returns (FindOneResData){}
+}
+
+message TariffById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Tariff data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Tariff data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Tariff data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Tariff data = 3;
+  Error error = 4;
+}
+
+message CreateTariffDto {
+  string name = 2;
+  int32 parkId = 3;
+  int32 price = 4;
+  int32 time = 5;
+}
+
+message UpdateTariffDto {
+  int32 id = 1;
+  string name = 2;
+  int32 parkId = 3;
+  int32 price = 4;
+  int32 time = 5;
+}
+
+message Tariff {
+  int32 id = 1;
+  string name = 2;
+  int32 parkId = 3;
+  int32 price = 4;
+  int32 time = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Tariffs {
+  repeated Tariff tariffs = 1;
+}
+
+// id, name, park_id, price, time, created_at, last_edited_at

@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package place;
+
+service PlaceService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (PlaceById) returns (FindOneResData) {}
+  rpc Create (CreatePlaceDto) returns (CreateResData) {}
+  rpc Update (UpdatePlaceDto) returns (UpdateResData){}
+  rpc Delete (PlaceById) returns (FindOneResData){}
+}
+
+message PlaceById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Place data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Place data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Place data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Place data = 3;
+  Error error = 4;
+}
+
+message CreatePlaceDto {
+  string name = 2;
+  int32 layerId = 3;
+  int32 price = 4;
+}
+
+message UpdatePlaceDto {
+  int32 id = 1;
+  string name = 2;
+  int32 layerId = 3;
+  int32 price = 4;
+}
+
+message Place {
+  int32 id = 1;
+  string name = 2;
+  int32 layerId = 3;
+  int32 price = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Places {
+  repeated Place places = 1;
+}
+
+// id, name, layer_id, price, created_at, last_edited_at

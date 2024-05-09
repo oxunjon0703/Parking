@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package shot;
+
+service ShotService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (ShotById) returns (FindOneResData) {}
+  rpc Create (CreateShotDto) returns (CreateResData) {}
+  rpc Update (UpdateShotDto) returns (UpdateResData){}
+  rpc Delete (ShotById) returns (FindOneResData){}
+}
+
+message ShotById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Shot data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Shot data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Shot data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Shot data = 3;
+  Error error = 4;
+}
+
+message CreateShotDto {
+  int32 userId = 1;
+  int32 amount = 2;
+}
+
+message UpdateShotDto {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 amount = 3;
+}
+
+message Shot {
+  int32 id = 1;
+  int32 userId = 2;
+  int32 amount = 3;
+  string createdAt = 4;
+  string lastEditedAt = 5;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Shots {
+  repeated Shot Shots = 1;
+}
+
+// id, user_id, amount, created_at, last_edited_at
+
+

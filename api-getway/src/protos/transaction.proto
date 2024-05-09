@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package transaction;
+
+service TransactionService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (TransactionById) returns (FindOneResData) {}
+  rpc Create (CreateTransactionDto) returns (CreateResData) {}
+  rpc Delete (TransactionById) returns (FindOneResData){}
+}
+
+message TransactionById {
+  int32 id = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Transaction data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Transaction data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Transaction data = 3;
+  Error error = 4;
+}
+
+message CreateTransactionDto {
+  int32 shotCreditId = 1;
+  int32 shotDebitId = 2;
+  int32 serviceId = 3;
+  int32 amount = 4;
+}
+
+message Transaction {
+  int32 id = 1;
+  int32 shotCreditId = 2;
+  int32 shotDebitId = 3;
+  int32 serviceId = 4;
+  int32 amount = 5;
+  string createdAt = 6;
+  string lastEditedAt = 7;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Transactions {
+  repeated Transaction Transactions = 1;
+}
+
+// id, shot_credit_id, shot_debit_id, service_id, amount, created_at, last_edited_at

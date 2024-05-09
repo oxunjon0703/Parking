@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package park;
+
+service ParkService {
+  rpc FindAll (Empity) returns (FindAllResData) {}
+  rpc FindOne (ParkById) returns (FindOneResData) {}
+  rpc FindOneName (ParkByName) returns (FindOneResData) {}
+  rpc Create (CreateParkDto) returns (CreateResData) {}
+  rpc Update (UpdateParkDto) returns (UpdateResData){}
+  rpc Delete (ParkById) returns (FindOneResData){}
+}
+
+message ParkById {
+  int32 id = 1;
+}
+
+message ParkByName {
+  string name = 1;
+}
+
+message Empity {
+  int32 id = 1;
+}
+
+message FindAllResData {
+  string message = 1;
+  int32 statusCode = 2;
+  repeated Park data = 3;
+  Error error = 4;
+}
+
+message FindOneResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Park data = 3;
+  Error error = 4;
+}
+
+message CreateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Park data = 3;
+  Error error = 4;
+}
+
+message UpdateResData {
+  string message = 1;
+  int32 statusCode = 2;
+  Park data = 3;
+  Error error = 4;
+}
+
+message CreateParkDto {
+  string name = 1;
+  int32 owner = 2;
+  optional int32 image = 3;
+}
+
+message UpdateParkDto {
+  int32 id = 1;
+  string name = 2;
+  int32 owner = 3;
+  optional int32 image = 4;
+}
+
+message Park {
+  int32 id = 1;
+  string name = 2;
+  int32 owner = 3;
+  int32 image = 4;
+  string createdAt = 5;
+  string lastEditedAt = 6;
+}
+
+message Error {
+  string errorMessage = 1;
+  int32 errorCode = 2;
+}
+
+message Parks {
+  repeated Park parks = 1;
+}
+
+// id, name, owner, image, created_at, last_edited_at
+
+
